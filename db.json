@@ -1,0 +1,55 @@
+{
+  "courses": 
+  [
+    
+    {
+      "id": 1,
+      "name": "Ultimate Course",
+      "about" : "In this course we teach you the basics of computer programming.",
+      "duration": 12,
+      "link" : "UPO7xvCxwDg" ,
+      "structure": ["Scratch", "Python", "Html","Figma", "Css", "Bootstrap", "Django"],
+      "paymentType": ["Installment", "One time payment", "Monthly"],
+      "installment": 10500,
+      "otp" : 20000,
+      "monthly": 1800,
+      "cpw": 2,
+      "mode": "Offline/Online"
+    },
+    {
+      "id": 2,
+      "name": "Ultimate Course Plus",
+      "about" : "In this course we start from the very basics of computer programming and let you explore the world of programming that is totally job oriented",
+      "duration": 12,
+      "link" : "youtube" ,
+      "structure": ["Scratch", "Python","Github", "Html","Figma", "Css", "Bootstrap","Tailwind", "Django", "Javascript", "React JS"],
+      "paymentType": ["Installment", "One time payment", "Monthly"],
+      "installment": 8000,
+      "otp" : 15000,
+      "monthly": 1500,
+      "cpw": 4,
+      "mode": "Online"
+    },
+    {
+      "id": 3,
+      "name": "STEM",
+      "about" : "In this course we group few of our subjects into one and bring the answer to your question of why we are studying these thing in science or maths",
+      "duration": 3,
+      "link" : "youtube" ,
+      "structure": ["STEM"],
+      "paymentType": ["Installment", "One time payment", "Monthly"],
+      "installment": 0,
+      "otp" : 5500,
+      "monthly": 0, 
+      "cpw": 2,
+      "mode": "Offline"
+    }
+  ],
+  "topics" : [
+    {
+      "id" : 1,
+      "name" : "Scratch",
+      "about": ""
+    }
+  ]
+}
