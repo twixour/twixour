@@ -13,7 +13,7 @@ const CourseItem = ({ course }) => {
       <div>
         <Link
           className="border-b-2 text-gray-600 "
-          to={`${course.name}`}
+          to={`${course.name.split(" ").join("")}`}
           state={{ course }}
         >
           <div className=" border-cyan-300 font-bold border ml-5 mt-2 mr-5 text-center  py-2 duration-300">

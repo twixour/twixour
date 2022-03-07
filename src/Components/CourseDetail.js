@@ -26,7 +26,7 @@ const CourseDetail = () => {
         <h1 className="text-3xl text-black font-extrabold text-center py-3">
           {name}
         </h1>
-        <div className="mx-auto border">
+        <div className=" p-8">
           <Youtube embedId={link} />
         </div>
         <div className="px-5 py-4">
