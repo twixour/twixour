@@ -2,7 +2,7 @@ const Youtube = ({ embedId }) => {
   // https://www.youtube.com/watch?v=UPO7xvCxwDg
   // UPO7xvCxwDg
   return (
-    <div className="border mx-auto">
+    <div className="mx-auto">
       <iframe
         src={`https://www.youtube.com/embed/${embedId}`}
         frameBorder="0"

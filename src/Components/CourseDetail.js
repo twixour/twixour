@@ -31,14 +31,15 @@ const CourseDetail = () => {
         </div>
         <div className="px-5 py-4">
           <span className="font-extralight">duration: </span>
+
           <span className="font-extrabold">{duration}</span>
         </div>
 
         <div className=" px-5 py-4">
           <span className="font-extralight">structure: </span>
           <div className="grid grid-cols-2 gap-2 xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-4 px-3 ">
-            {structure.map((topic) => (
-              <Topic topic={topic} />
+            {structure.map((topic, index) => (
+              <Topic key={index} topic={topic} />
             ))}
           </div>
         </div>
@@ -46,8 +47,8 @@ const CourseDetail = () => {
         <div className="px-5 py-4">
           <span className="font-extralight">paymentType: </span>
           <div className="grid grid-cols-2 gap-2 xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-4 px-3 ">
-            {paymentType.map((payment) => (
-              <div>{payment}</div>
+            {paymentType.map((payment, index) => (
+              <div key={index}>{payment}</div>
             ))}
           </div>
         </div>
@@ -75,11 +76,6 @@ const CourseDetail = () => {
         <div className="px-5 py-4">
           <span className="font-extralight">mode: </span>
           <span className="font-extrabold">{mode}</span>
-        </div>
-
-        <div className="px-5 py-4">
-          <span className="font-extralight">link: </span>
-          <span className="font-extrabold">{link}</span>
         </div>
       </div>
     </div>
