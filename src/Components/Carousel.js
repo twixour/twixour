@@ -4,8 +4,11 @@ import studentImage1 from "../images/home/6.JPG";
 import studentImage2 from "../images/home/7.JPG";
 import CarouselData from "./CarouselData";
 
+import { db } from "../Firebase/firebase";
+import firebase from "firebase/compat/app";
+
 const Carousel = () => {
-  const data = [
+  const [data, setData] = useState([
     {
       title: "Twixour",
       image: ledImage,
@@ -21,7 +24,19 @@ const Carousel = () => {
       image: studentImage2,
       content: "Welcome to Twixour",
     },
-  ];
+  ]);
+  useEffect(() => {
+    db.collection("homeData")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setData(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            item: doc.data(),
+          }))
+        );
+      });
+  }, []);
   const [featuredContent, setFeaturedContent] = useState({
     title: "Twixour",
     image: ledImage,
