@@ -1,100 +1,92 @@
-import React from "react";
+import { useState, useEffect, useRef } from "react";
+import ledImage from "../images/home/5.JPG";
+import studentImage1 from "../images/home/6.JPG";
+import studentImage2 from "../images/home/7.JPG";
+import CarouselData from "./CarouselData";
 
 const Carousel = () => {
+  const data = [
+    {
+      title: "Twixour",
+      image: ledImage,
+      content: "Welcome to Twixour",
+    },
+    {
+      title: "Twixour",
+      image: studentImage1,
+      content: "Welcome to Twixour",
+    },
+    {
+      title: "Twixour",
+      image: studentImage2,
+      content: "Welcome to Twixour",
+    },
+  ];
+  const [featuredContent, setFeaturedContent] = useState({
+    title: "Twixour",
+    image: ledImage,
+    content: "Welcome to Twixour",
+  });
+  const featuredImages = [ledImage, studentImage1, studentImage2];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const slideRef = useRef();
+  let count = 0;
+
+  const handleNextSlider = () => {
+    count = (count + 1) % featuredImages.length;
+    const newData = data[count];
+    setFeaturedContent(newData);
+  };
+
+  // const handleOnPrevClick = () => {
+  //   const productsLength = featuredImages.length;
+  //   count = (currentIndex + productsLength - 1) % productsLength;
+  //   setCurrentIndex(count);
+  // };
+  const removeAnimation = () => {
+    slideRef.current.classList.remove("fade-anim");
+  };
+  useEffect(() => {
+    startSlider();
+    slideRef.current.addEventListener("animationend", removeAnimation);
+  }, []);
+  useEffect(() => {
+    slideRef.current.classList.add("fade-anim");
+  }, [currentIndex]);
+
+  const startSlider = () => {
+    setInterval(() => {
+      handleNextSlider();
+    }, 4500);
+  };
+  console.log(featuredContent[currentIndex]);
   return (
-    <div>
-      <div
-        id="carouselExampleCaptions"
-        className="carousel slide relative"
-        data-bs-ride="carousel"
-      >
-        <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="0"
-            className="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-        <div className="carousel-inner relative w-full overflow-hidden">
-          <div className="carousel-item active relative float-left w-full">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg"
-              className="block w-full"
-              alt="..."
-            />
-            <div className="carousel-caption hidden md:block absolute text-center">
-              <h5 className="text-xl">First slide label</h5>
-              <p>
-                Some representative placeholder content for the first slide.
-              </p>
-            </div>
-          </div>
-          <div className="carousel-item relative float-left w-full">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg"
-              className="block w-full"
-              alt="..."
-            />
-            <div className="carousel-caption hidden md:block absolute text-center">
-              <h5 className="text-xl">Second slide label</h5>
-              <p>
-                Some representative placeholder content for the second slide.
-              </p>
-            </div>
-          </div>
-          <div className="carousel-item relative float-left w-full">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg"
-              className="block w-full"
-              alt="..."
-            />
-            <div className="carousel-caption hidden md:block absolute text-center">
-              <h5 className="text-xl">Third slide label</h5>
-              <p>
-                Some representative placeholder content for the third slide.
-              </p>
-            </div>
-          </div>
-        </div>
-        <button
-          className="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon inline-block bg-no-repeat"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon inline-block bg-no-repeat"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Next</span>
-        </button>
+    <div className="max-w-screen-lg m-auto mt-3">
+      <div ref={slideRef} className="w-full relative select-none">
+        <CarouselData featuredContent={featuredContent} />
+
+        {/* <div className="absolute w-full top-1/2 transform -translate-y-1/2 flex justify-between items-start px-3">
+          <button onClick={handleOnPrevClick} className="text-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-8 w-8"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z" />
+            </svg>
+          </button>
+          <button onClick={handleNextSlider} className=" text-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-8 w-8"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798l-5.445-3.63z" />
+            </svg>
+          </button>
+        </div> */}
       </div>
     </div>
   );
